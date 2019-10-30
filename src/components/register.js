@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from 'axios';
-import '../../css/error__item.css';
+import '../css/error__item.css';
 import { Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom'
-import Login from '../auth/Login';
+import Login from './auth/Login';
 import { createBrowserHistory } from 'history';
 const history = createBrowserHistory();
 
@@ -46,19 +46,18 @@ class Register extends Component {
             data: newUser
         })
             .then(response => {
+                console.log(response);
+                
                 if (response.status == 200) {
                     this.setState({
                         errors: response.data
                     })
                     console.log(this.state.errors);
                 } else if (response.status == 201) {
-                    alert('Register susscess');
+                    alert('Check your email to Active User before Login');
                     this.setState({
                         redirect: true
                     })
-                    
-
-
                 }
 
             })
